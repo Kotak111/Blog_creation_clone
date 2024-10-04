@@ -84,7 +84,7 @@ exports.login =async(req,res)=>{
              message:"Invalid credential"
          })
      }
-      generateToeken(user._id,user.role_id,res)
+      generateToeken(user._id,res)
       res.status(200).json({
          success:true,
          user:{

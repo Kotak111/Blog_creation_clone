@@ -28,11 +28,16 @@ exports.auth = async (req, res, next) => {
     }
 }
 
-exports.IsUser = async (req, res, next) => {
-    if (req.user.userrole == "user") {
-        next();
+exports.IsUser = (req, res, next) => {
+      
+    if (!req.user) {
+      return res.status(401).json({ success: false, message: "Unauthorized, no user found" });
     }
-    else {
-        return res.status(401).send("unauthorized")
+  
+    
+    if (req.user.role_id === "user") {
+      next();
+    } else {
+      return res.status(403).json({ success: false, message: "You are not authorized to access this resource" });
     }
-}
+  };

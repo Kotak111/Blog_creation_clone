@@ -1,8 +1,8 @@
 const jwt=require("jsonwebtoken")
-exports.generateToeken = (userId,userrole,res)=>{
+exports.generateToeken = (userId,res)=>{
     const token= jwt.sign({
         userId,
-        userrole
+       
     },
     process.env.JWT_SECRET,
     {expiresIn:"15d"})
